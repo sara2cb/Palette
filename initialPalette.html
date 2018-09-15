@@ -1,0 +1,45 @@
+<html>
+
+<head>
+<meta charset="utf-8"/>
+<!-- Get the libraries script for WebGL -->
+<script type="text/javascript" src="glMatrix-0.9.5.min.js"></script>
+<script type="text/javascript" src="webgl-utils.js"></script>
+
+<!-- Write scripts for the shader -->
+<script id="shader-fs" type="x-shader/x-fragment">
+    precision mediump float;
+    varying vec4 vColor;
+    void main(void) {
+        gl_FragColor = vColor;
+    }
+</script>
+
+<script id="shader-vs" type="x-shader/x-vertex">
+    attribute vec3 aVertexPosition;
+    attribute vec4 aVertexColor;
+    varying vec4 vColor;
+    void main(void) {
+        gl_Position =  vec4(aVertexPosition, 1.0);
+        vColor = aVertexColor;
+    }
+</script>
+
+<!-- Scripts of the program -->
+<script type="text/javascript" src=paletteColor.js></script>
+<script type="text/javascript" src=palette.js></script>
+<script type="text/javascript" src=init.js></script>
+
+
+</head>
+
+<!-- Start point of the program -->
+
+<body onload="webGLStart();">
+    
+    <canvas id="mycanvas" style="border: none;" width="600" height="600"></canvas>
+    <input type="button" value="Geometrical vs Optimized" onclick="geo = !geo; tick();"> 
+
+</body>
+
+</html>
